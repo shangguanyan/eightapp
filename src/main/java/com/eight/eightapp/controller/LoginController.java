@@ -6,17 +6,18 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Created by cdyoue on 2016/10/21.
  * 登陆控制器
  */
-@RestController
+@Controller
 public class LoginController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = {"/login","/login.action"}, method = RequestMethod.GET)
     public String login(){
         return "login";
     }
@@ -25,7 +26,7 @@ public class LoginController {
     public String login(
             @RequestParam(value = "username", required = true) String userName,
             @RequestParam(value = "password", required = true) String password,
-            @RequestParam(value = "rememberMe", required = true, defaultValue = "false") boolean rememberMe
+            @RequestParam(value = "rememberMe", required = true, defaultValue = "false") boolean rememberMe,Model model
     ) {
         logger.info("==========" + userName + password + rememberMe);
         Subject subject = SecurityUtils.getSubject();
@@ -36,9 +37,10 @@ public class LoginController {
             subject.login(token);
         } catch (AuthenticationException e) {
             e.printStackTrace();
-            return "{\"Msg\":\"您的账号或密码输入错误\",\"state\":\"failed\"}";
+            model.addAttribute("msg", "用户名或密码错误");
+            return "login";
         }
-        return "{\"Msg\":\"登陆成功\",\"state\":\"success\"}";
+        return "index";
     }
 
 }

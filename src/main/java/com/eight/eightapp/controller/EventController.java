@@ -3,13 +3,14 @@ package com.eight.eightapp.controller;
 import com.eight.eightapp.bean.Event;
 import com.eight.eightapp.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequestMapping(value = "/events")
-@RestController
+@Controller
 public class EventController {
 	
 	@Autowired

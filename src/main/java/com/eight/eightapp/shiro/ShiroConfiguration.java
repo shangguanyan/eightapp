@@ -19,7 +19,6 @@ import java.util.Map;
 
 /**
  * shiro配置类
- * Created by cdyoue on 2016/10/21.
  */
 @Configuration
 public class ShiroConfiguration {
@@ -93,7 +92,6 @@ public class ShiroConfiguration {
         Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
         LogoutFilter logoutFilter = new LogoutFilter();
         logoutFilter.setRedirectUrl("/login");
-//        filters.put("logout",null);
         shiroFilterFactoryBean.setFilters(filters);
 
         Map<String, String> filterChainDefinitionManager = new LinkedHashMap<String, String>();
@@ -103,8 +101,6 @@ public class ShiroConfiguration {
 //        filterChainDefinitionManager.put("/user/edit/**", "authc,perms[user:edit]");// 这里为了测试，固定写死的值，也可以从数据库或其他配置中读取
         filterChainDefinitionManager.put("/**", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
-
-
         shiroFilterFactoryBean.setSuccessUrl("/");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         return shiroFilterFactoryBean;

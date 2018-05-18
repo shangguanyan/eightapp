@@ -4,13 +4,14 @@ package com.eight.eightapp.controller;
 import com.eight.eightapp.bean.User;
 import com.eight.eightapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequestMapping(value = "/users")
-@RestController
+@Controller
 public class UserController {
 	
 	@Autowired

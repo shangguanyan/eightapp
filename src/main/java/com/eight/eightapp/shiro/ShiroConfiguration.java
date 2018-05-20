@@ -37,14 +37,14 @@ public class ShiroConfiguration {
      * 防止密码在数据库里明码保存，当然在登陆认证的时候，
      * 这个类也负责对form里输入的密码进行编码。
      */
-    @Bean(name = "hashedCredentialsMatcher")
-    public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
-        credentialsMatcher.setHashAlgorithmName("MD5");
-        credentialsMatcher.setHashIterations(2);
-        credentialsMatcher.setStoredCredentialsHexEncoded(true);
-        return credentialsMatcher;
-    }
+//    @Bean(name = "hashedCredentialsMatcher")
+//    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+//        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+//        credentialsMatcher.setHashAlgorithmName("MD5");
+//        credentialsMatcher.setHashIterations(2);
+//        credentialsMatcher.setStoredCredentialsHexEncoded(true);
+//        return credentialsMatcher;
+//    }
 
     /**
      * ShiroRealm，这是个自定义的认证类，继承自AuthorizingRealm，

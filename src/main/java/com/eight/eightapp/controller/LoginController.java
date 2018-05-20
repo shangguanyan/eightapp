@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = {"/login","/login.action"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/login","/login.action","/"}, method = RequestMethod.GET)
     public String login(){
         return "login";
     }

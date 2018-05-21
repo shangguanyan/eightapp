@@ -7,12 +7,16 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
+import javax.annotation.Resource;
 import javax.servlet.Filter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -27,6 +31,9 @@ public class ShiroConfiguration {
      * 负责org.apache.shiro.util.Initializable类型bean的生命周期的，初始化和销毁。
      * 主要是AuthorizingRealm类的子类，以及EhCacheManager类。
      */
+    @Autowired
+
+
     @Bean(name = "lifecycleBeanPostProcessor")
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
@@ -96,9 +103,11 @@ public class ShiroConfiguration {
 
         Map<String, String> filterChainDefinitionManager = new LinkedHashMap<String, String>();
         filterChainDefinitionManager.put("/logout", "logout");
-        filterChainDefinitionManager.put("/user/**", "authc,roles[ROLE_USER]");
-        filterChainDefinitionManager.put("/events/**", "authc,roles[ROLE_ADMIN]");
-//        filterChainDefinitionManager.put("/user/edit/**", "authc,perms[user:edit]");// 这里为了测试，固定写死的值，也可以从数据库或其他配置中读取
+        filterChainDefinitionManager.put("/user/**", "authc,roles[ADMIN]");
+        filterChainDefinitionManager.put("/events/**", "authc,roles[ADMIN]");
+
+        filterChainDefinitionManager.put("/user/edit/**", "authc,perms[user:edit]");
+//        filterChainDefinitionManager.put("/changePassword", "anon");
         filterChainDefinitionManager.put("/**", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
         shiroFilterFactoryBean.setSuccessUrl("/");
@@ -127,6 +136,8 @@ public class ShiroConfiguration {
         aASA.setSecurityManager(securityManager());
         return aASA;
     }
+
+
 
 
 }

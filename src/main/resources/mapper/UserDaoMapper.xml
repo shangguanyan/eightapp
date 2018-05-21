@@ -130,6 +130,11 @@
 			login_count = #{loginCount}
 		WHERE id = #{id}
     </update>
+
+	<update id="changePassword">
+		UPDATE user set password = #{password}
+		where id = #{userId}
+	</update>
     
     <delete id="delete" parameterType="int">
     	DELETE FROM user WHERE id = #{id}

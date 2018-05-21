@@ -40,12 +40,9 @@ public class ShiroRealm extends AuthorizingRealm {
         }
         //赋予权限
         for(Permission permission:permissionService.getByUserId(user.getId())){
-//            if(StringUtils.isNotBlank(permission.getPermCode()))
                 info.addStringPermission(permission.getName());
         }
 
-        //设置登录次数、时间
-//        userService.updateUserLogin(user);
         return info;
     }
 
@@ -59,8 +56,6 @@ public class ShiroRealm extends AuthorizingRealm {
 
         User user = userService.getByUserName(token.getUsername());
         if (user != null) {
-//            byte[] salt = Encodes.decodeHex(user.getSalt());
-//            ShiroUser shiroUser=new ShiroUser(user.getId(), user.getLoginName(), user.getName());
             //设置用户session
             Session session = SecurityUtils.getSubject().getSession();
             session.setAttribute("user", user);
@@ -68,7 +63,6 @@ public class ShiroRealm extends AuthorizingRealm {
         } else {
             return null;
         }
-//        return null;
     }
 
 }

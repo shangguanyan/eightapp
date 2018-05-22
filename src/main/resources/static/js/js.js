@@ -32,6 +32,7 @@ $(function () {
 //用户管理页面上点击删除按钮弹出删除框(userList.html)
 $(function () {
     $('.removeUser').click(function () {
+        console.log("1122");
         $('.zhezhao').css('display', 'block');
         $('#removeUse').fadeIn();
     });
@@ -42,4 +43,10 @@ $(function () {
         $('.zhezhao').css('display', 'none');
         $('#removeUse').fadeOut();
     });
+});
+
+$(function () {
+    $("#searchUser").click(function () {
+        $("#userSearchForm").submit();
+    }) ;
 });

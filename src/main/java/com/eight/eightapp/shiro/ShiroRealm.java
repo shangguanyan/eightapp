@@ -39,9 +39,9 @@ public class ShiroRealm extends AuthorizingRealm {
             info.addRole(userRole.getName());
         }
         //赋予权限
-        for(Permission permission:permissionService.getByUserId(user.getId())){
-                info.addStringPermission(permission.getName());
-        }
+//        for(Permission permission:permissionService.getByUserId(user.getId())){
+//                info.addStringPermission(permission.getName());
+//        }
 
         return info;
     }

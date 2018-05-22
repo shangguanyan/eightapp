@@ -12,29 +12,36 @@
 <header class="publicHeader">
     <div th:include="left :: #content-header"></div>
 </header>
-
 <!--时间-->
 <section class="publicTime">
     <span id="time">2015年1月1日 11:11  星期一</span>
     <a href="#">温馨提示：为了能正常浏览，请使用高版本浏览器！（IE10+）</a>
 </section>
 <!--主体内容-->
-<section class="publicMian">
+<section class="publicMian ">
     <div th:include="left :: #content-left"></div>
+
     <div class="right">
-        <img class="wColck" src="img/clock.jpg" alt=""/>
-        <div class="wFont">
-            <h2><span th:text="${session.user.username}"></span></h2>
-            <p>欢迎来到<span th:include="left :: #content-title"/>!</p>
-			<span id="hours"></span>
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>用户管理页面 >> 用户信息查看页面</span>
+        </div>
+        <div class="providerView">
+            <p><strong>用户编号：</strong><span>hanlu</span></p>
+            <p><strong>用户名称：</strong><span>韩露</span></p>
+            <p><strong>用户性别：</strong><span>女</span></p>
+            <p><strong>出生日期：</strong><span>2011年2月1日</span></p>
+            <p><strong>用户电话：</strong><span>12345678906</span></p>
+            <p><strong>用户地址：</strong><span>北极</span></p>
+            <p><strong>用户类别：</strong><span>经理</span></p>
+
+            <a href="userList.html">返回</a>
         </div>
     </div>
 </section>
 <footer class="footer">
 </footer>
 <script src="js/time.js"></script>
-<div style="text-align:center;">
-<!--<p>更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>-->
-</div>
+
 </body>
 </html>

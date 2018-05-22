@@ -10,11 +10,15 @@
 		<result property="telephone" column="telephone"/>
 		<result property="mobilePhone" column="mobile_phone"/>
 		<result property="wechatId" column="wechat_id"/>
-		<result property="skill" column="skill"/>
+		<result property="sex" column="sex"/>
+		<result property="birthday" column="birthday"/>
 		<result property="departmentId" column="department_id"/>
 		<result property="loginCount" column="login_count"/>
 		<collection property="roles" ofType="com.eight.eightapp.bean.Role">
 			<result column="name" property="name"/>
+			<result column="id" property="id"/>
+			<result column="roleLevel" property="role_level"/>
+			<result column="description" property="description"/>
 		</collection>
     </resultMap>
     
@@ -27,7 +31,7 @@
 				and cnname = #{cnname}
 			</if>
 			<if test="username != null and username != ''">
-				and username = #{username}
+				and username LIKE concat(concat('%',#{username}),'%')
 			</if>
 			<if test="password != null and password != ''">
 				and password = #{password}
@@ -69,6 +73,8 @@
     	
     <select id="getByMap" parameterType="map" resultMap="userMap">
     	SELECT * FROM user
+		LEFT JOIN user_role ur on id= ur.user_id
+		LEFT JOIN role r on ur.role_id=r.id
 		<include refid="queryCondition" />
     </select>
     
@@ -99,6 +105,8 @@
 			mobile_phone,
 			wechat_id,
 			skill,
+			sex,
+			birthday,
 			department_id,
 			login_count
 		)VALUES(
@@ -111,6 +119,8 @@
 			#{mobilePhone},
 			#{wechatId},
 			#{skill},
+			#{sex},
+			#{birthday},
 			#{departmentId},
 			#{loginCount}
 		)

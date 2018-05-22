@@ -2,6 +2,7 @@ package com.eight.eightapp.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Date;
 import java.util.List;
 
 public class User   {
@@ -19,7 +20,40 @@ public class User   {
 	private Integer departmentId;
 	private Integer loginCount;
 
+	private String sex;//性别 0 女 1 男
+	private Date birthday;//出生日
+
+	private String userRemi;//确认密码
 	private List<Role> roles;
+
+	public String getUserRemi() {
+		return userRemi;
+	}
+
+	public void setUserRemi(String userRemi) {
+		this.userRemi = userRemi;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
 	public Integer getId() {
 		return id;
 	}

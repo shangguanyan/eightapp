@@ -34,7 +34,7 @@ li{
     font-size: 22px;
     padding-left:80px;
     text-shadow: 2px 1px #000;
-    background: url("../img/buy.png") 30px center no-repeat;
+    background: url("../img/admin.png") 30px center no-repeat;
 
 }
 .publicHeaderR{
@@ -217,6 +217,7 @@ li{
     font-weight: bold;
     background:#87c212 url("../img/search.png") 10px center no-repeat;
 }
+
 .search input[type='button']:focus{
     outline: none;
     background-color: #5d8410;

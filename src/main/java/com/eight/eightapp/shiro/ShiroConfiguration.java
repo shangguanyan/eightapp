@@ -98,16 +98,17 @@ public class ShiroConfiguration {
 
         Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
         LogoutFilter logoutFilter = new LogoutFilter();
-        logoutFilter.setRedirectUrl("/login");
+        logoutFilter.setRedirectUrl("/");
         shiroFilterFactoryBean.setFilters(filters);
 
         Map<String, String> filterChainDefinitionManager = new LinkedHashMap<String, String>();
         filterChainDefinitionManager.put("/logout", "logout");
-        filterChainDefinitionManager.put("/user/**", "authc,roles[ADMIN]");
-        filterChainDefinitionManager.put("/events/**", "authc,roles[ADMIN]");
+        filterChainDefinitionManager.put("/user/**", "authc,roles[admin]");
+        filterChainDefinitionManager.put("/role/**", "authc,roles[admin]");
+//        filterChainDefinitionManager.put("/events/**", "authc,roles[ADMIN]");
 
-        filterChainDefinitionManager.put("/user/edit/**", "authc,perms[user:edit]");
-//        filterChainDefinitionManager.put("/changePassword", "anon");
+//        filterChainDefinitionManager.put("/user/edit/**", "authc,perms[user:edit]");
+        filterChainDefinitionManager.put("/changePassword", "authc");
         filterChainDefinitionManager.put("/**", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
         shiroFilterFactoryBean.setSuccessUrl("/");
